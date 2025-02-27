@@ -89,6 +89,13 @@ public class physicsApp {
         double velocity = scanner.nextDouble();
         double position = scanner.nextDouble();
 
+        for (int i = 0; i <= seconds; i++) {
+            // calculate velocity at this time
+            // calculate position at this time
+            // print the next table row
+            // draw the rest of the owl
+        }
+
 
     }
 

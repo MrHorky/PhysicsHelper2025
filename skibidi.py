@@ -1,4 +1,5 @@
 def skibidi():
-  print("Hello Skibidi")
+  while (True):
+    print("Skibidi Sigma Rizz")
 
 skibidi()

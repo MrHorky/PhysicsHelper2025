@@ -1,5 +1,5 @@
 def skibidi():
-  while (True):
-    print("Skibidi Sigma Rizz")
+    while (True):
+        print("Skibidi Sigma Rizz")
 
 skibidi()

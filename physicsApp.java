@@ -16,7 +16,7 @@ public class physicsApp {
 
             int option = scanner.nextInt();
 
-            while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5) {
+            while (option != 1 && option != 2 && option != 3 && option != 4) {
                 System.out.println("Invalid option");
                 System.out.println("Choose an option from the list: ");
 
@@ -28,11 +28,17 @@ public class physicsApp {
             }
 
             switch (option) {
-                case 1 -> calculators(scanner);
-                case 2 -> tableGenerator(scanner);
-                case 3 -> practiceProblems(scanner);
-                case 4 -> {
-                }
+                case 1:
+                    calculators(scanner);
+                    break;
+                case 2:
+                    tableGenerator(scanner);
+                    break;
+                case 3:
+                    practiceProblems(scanner);
+                    break;
+                case 4:
+                    return;
             }
         }
     }
@@ -89,14 +95,15 @@ public class physicsApp {
         double velocity = scanner.nextDouble();
         double position = scanner.nextDouble();
 
+        System.out.println("Time (s) | Velocity (m/s) | Position (x) ");
+        System.out.println("---------+----------------+--------------");
+
         for (int i = 0; i <= seconds; i++) {
-            // calculate velocity at this time
-            // calculate position at this time
-            // print the next table row
-            // draw the rest of the owl
+            double currentVelo = velocity + (acceleration * i);
+            double currentPos = position + (velocity * i) + (0.5 * acceleration * i * i);
+
+            System.out.printf("%-9d| %-15.2f| %-12.2f%n", i, currentVelo, currentPos);
         }
-
-
     }
 
     public static void practiceProblems(Scanner scanner) {

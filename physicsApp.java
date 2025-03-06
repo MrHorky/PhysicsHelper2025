@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class physicsApp {
@@ -143,7 +144,92 @@ public class physicsApp {
     }
 
     public static void practiceProblems(Scanner scanner) {
-        System.out.println("Coming Soon....");
+        Random rand = new Random();
+        String[] problemTypes = {"Position", "Velocity", "Acceleration"};
+        int[] nums = {1, 2, 3};
+        
+        System.out.println("What type of problem would you like to solve?");
+        for (int i = 0; i < nums.length; i++) {
+            System.out.printf("\t %d. %s\n", nums[i], problemTypes[i]);
+        }
+        
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        
+        while (choice < 1 || choice > 3) {
+            System.out.println("Invalid option. Choose again:");
+            for (int i = 0; i < nums.length; i++) {
+                System.out.printf("\t %d. %s\n", nums[i], problemTypes[i]);
+            }
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
+        
+        double userAnswer, correctAnswer;
+        switch (choice) {
+            case 1 -> {
+                double x0 = rand.nextDouble() * 50;
+                double v0 = rand.nextDouble() * 20;
+                double t = rand.nextDouble() * 10 + 1;
+                double a = rand.nextDouble() * 10;
+        
+                int unknown = rand.nextInt(4);
+                switch (unknown) {
+                    case 0 -> {
+                        correctAnswer = x0 + (v0 * t) + (0.5 * a * t * t);
+                        System.out.printf("Given x₀ = %.2f, v₀ = %.2f, t = %.2f, a = %.2f, calculate x: ", x0, v0, t, a);
+                    }
+                    case 1 -> {
+                        correctAnswer = (v0 * t) + (0.5 * a * t * t);
+                        System.out.printf("Given x = ?, v₀ = %.2f, t = %.2f, a = %.2f, calculate x₀: ", v0, t, a);
+                    }
+                    case 2 -> {
+                        correctAnswer = (x0 - (0.5 * a * t * t)) / t;
+                        System.out.printf("Given x = %.2f, x₀ = %.2f, t = %.2f, a = %.2f, calculate v₀: ", x0, x0, t, a);
+                    }
+                    default -> {
+                        correctAnswer = (x0 - (v0 * t)) / (0.5 * t * t);
+                        System.out.printf("Given x = %.2f, x₀ = %.2f, v₀ = %.2f, t = %.2f, calculate a: ", x0, x0, v0, t);
+                    }
+                }
+            }
+            case 2 -> {
+                double deltaX = rand.nextDouble() * 50;
+                double deltaT = rand.nextDouble() * 10 + 1;
+        
+                if (rand.nextBoolean()) {
+                    correctAnswer = deltaX / deltaT;
+                    System.out.printf("Given Δx = %.2f and Δt = %.2f, calculate v: ", deltaX, deltaT);
+                } 
+                else {
+                    correctAnswer = deltaT * (deltaX / deltaT);
+                    System.out.printf("Given v = %.2f and Δt = %.2f, calculate Δx: ", deltaX / deltaT, deltaT);
+                }
+            }
+            case 3 -> {
+                double deltaV = rand.nextDouble() * 20;
+                double deltaT = rand.nextDouble() * 10 + 1;
+                if (rand.nextBoolean()) {
+                    correctAnswer = deltaV / deltaT;
+                    System.out.printf("Given Δv = %.2f and Δt = %.2f, calculate a: ", deltaV, deltaT);
+                } 
+                else {
+                    correctAnswer = deltaT * (deltaV / deltaT);
+                    System.out.printf("Given a = %.2f and Δt = %.2f, calculate Δv: ", deltaV / deltaT, deltaT);
+                }
+            }
+            default -> {
+                return;
+            }
+        }
+        
+        userAnswer = scanner.nextDouble();
+        if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+            System.out.println("Correct!");
+        } 
+        else {
+            System.out.printf("Incorrect! The correct answer is %.2f\n", correctAnswer);
+        }    
     }
 
     public static void position(Scanner scanner) {

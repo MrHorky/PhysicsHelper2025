@@ -148,7 +148,7 @@ public class physicsApp {
         String[] problemTypes = {"Position", "Velocity", "Acceleration"};
         int[] nums = {1, 2, 3};
         
-        System.out.println("What type of problem would you like to solve?");
+        System.out.println("What type of problem would you like to solve?: ");
         for (int i = 0; i < nums.length; i++) {
             System.out.printf("\t %d. %s\n", nums[i], problemTypes[i]);
         }
@@ -156,7 +156,7 @@ public class physicsApp {
         int choice = scanner.nextInt();
         scanner.nextLine();
         
-        while (choice < 1 || choice > 3) {
+        while (choice > 3 && choice != 0) {
             System.out.println("Invalid option. Choose again:");
             for (int i = 0; i < nums.length; i++) {
                 System.out.printf("\t %d. %s\n", nums[i], problemTypes[i]);
@@ -168,28 +168,28 @@ public class physicsApp {
         double userAnswer, correctAnswer;
         switch (choice) {
             case 1 -> {
-                double x0 = rand.nextDouble() * 50;
-                double v0 = rand.nextDouble() * 20;
+                double initPos = rand.nextDouble() * 50;
+                double initVelo = rand.nextDouble() * 20;
                 double t = rand.nextDouble() * 10 + 1;
                 double a = rand.nextDouble() * 10;
         
                 int unknown = rand.nextInt(4);
                 switch (unknown) {
                     case 0 -> {
-                        correctAnswer = x0 + (v0 * t) + (0.5 * a * t * t);
-                        System.out.printf("Given x₀ = %.2f, v₀ = %.2f, t = %.2f, a = %.2f, calculate x: ", x0, v0, t, a);
+                        correctAnswer = initPos + (initVelo * t) + (0.5 * a * t * t);
+                        System.out.printf("Given x₀ = %.2f, v₀ = %.2f, t = %.2f, a = %.2f, calculate x: ", initPos, initVelo, t, a);
                     }
                     case 1 -> {
-                        correctAnswer = (v0 * t) + (0.5 * a * t * t);
-                        System.out.printf("Given x = ?, v₀ = %.2f, t = %.2f, a = %.2f, calculate x₀: ", v0, t, a);
+                        correctAnswer = (initVelo * t) + (0.5 * a * t * t);
+                        System.out.printf("Given x = ?, v₀ = %.2f, t = %.2f, a = %.2f, calculate x₀: ", initVelo, t, a);
                     }
                     case 2 -> {
-                        correctAnswer = (x0 - (0.5 * a * t * t)) / t;
-                        System.out.printf("Given x = %.2f, x₀ = %.2f, t = %.2f, a = %.2f, calculate v₀: ", x0, x0, t, a);
+                        correctAnswer = (initPos - (0.5 * a * t * t)) / t;
+                        System.out.printf("Given x = %.2f, x₀ = %.2f, t = %.2f, a = %.2f, calculate v₀: ", initPos, initPos, t, a);
                     }
                     default -> {
-                        correctAnswer = (x0 - (v0 * t)) / (0.5 * t * t);
-                        System.out.printf("Given x = %.2f, x₀ = %.2f, v₀ = %.2f, t = %.2f, calculate a: ", x0, x0, v0, t);
+                        correctAnswer = (initPos - (initVelo * t)) / (0.5 * t * t);
+                        System.out.printf("Given x = %.2f, x₀ = %.2f, v₀ = %.2f, t = %.2f, calculate a: ", initPos, initPos, initVelo, t);
                     }
                 }
             }

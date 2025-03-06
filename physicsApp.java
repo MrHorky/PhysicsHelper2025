@@ -11,7 +11,7 @@ public class physicsApp {
             System.out.println("Choose equation to solve: ");
 
             for (int i = 0; i < numbers.length; i++) {
-                System.out.printf("\t %d. %s\n", numbers[i], menu[i]);
+                System.out.printf("\t%d. %s\n", numbers[i], menu[i]);
             }
 
             int option = scanner.nextInt();
@@ -21,24 +21,19 @@ public class physicsApp {
                 System.out.println("Choose an option from the list: ");
 
                 for (int i = 0; i < numbers.length; i++) {
-                    System.out.printf("\t %d. %s\n", numbers[i], menu[i]);
+                    System.out.printf("\t%d. %s\n", numbers[i], menu[i]);
                 }
             
                 option = scanner.nextInt();
             }
 
             switch (option) {
-                case 1:
-                    calculators(scanner);
-                    break;
-                case 2:
-                    tableGenerator(scanner);
-                    break;
-                case 3:
-                    practiceProblems(scanner);
-                    break;
-                case 4:
+                case 1 -> calculators(scanner);
+                case 2 -> tableGenerator(scanner);
+                case 3 -> practiceProblems(scanner);
+                case 4 -> {
                     return;
+                }
             }
         }
     }
@@ -50,7 +45,7 @@ public class physicsApp {
         System.out.println("Choose equation to solve: ");
 
         for (int i = 0; i < nums.length; i++) {
-            System.out.printf("\t %d. %s\n", nums[i], options[i]);
+            System.out.printf("\t%d. %s\n", nums[i], options[i]);
         }
 
         int choice = scanner.nextInt();
@@ -61,53 +56,94 @@ public class physicsApp {
             System.out.println("Choose equation to solve: ");
 
             for (int i = 0; i < nums.length; i++) {
-                System.out.printf("\t %d. %s\n", nums[i], options[i]);
+                System.out.printf("\t%d. %s\n", nums[i], options[i]);
             }
         
             choice = scanner.nextInt();
         }
 
         switch (choice) {
-            case 1:
-                position(scanner);
-                break;
-            case 2:
-                velocity(scanner);
-                break;
-            case 3:
-                acceleration(scanner);
-                break;
-            case 4:
-                angularSpeed(scanner);
-                break;
-            case 5:
-                angleOfMov(scanner);
-                break;
-            default:
-                break;
+            case 1 -> position(scanner);
+            case 2 -> velocity(scanner);
+            case 3 -> acceleration(scanner);
+            case 4 -> angularSpeed(scanner);
+            case 5 -> angleOfMov(scanner);
+            default -> {
+            }
         }
     }
 
     public static void tableGenerator(Scanner scanner) {
-        System.out.println("Enter seconds to simulate, initial acceleration, initial veloocity, initial position: ");
-        double seconds = scanner.nextDouble();
-        double acceleration = scanner.nextDouble();
-        double velocity = scanner.nextDouble();
-        double position = scanner.nextDouble();
+        String[] options = {"Regular Table", "Projectile Motion"};
+        int[] optionNums = {1, 2};
 
-        System.out.println("Time (s) | Velocity (m/s) | Position (x) ");
-        System.out.println("---------+----------------+--------------");
+        System.out.println("Choose table type to generate: ");
 
-        for (int i = 0; i <= seconds; i++) {
-            double currentVelo = velocity + (acceleration * i);
-            double currentPos = position + (velocity * i) + (0.5 * acceleration * i * i);
+        for (int i = 0; i < optionNums.length; i++) {
+            System.out.printf("\t%d. %s\n", optionNums[i], options[i]);
+        }
 
-            System.out.printf("%-9d| %-15.2f| %-12.2f%n", i, currentVelo, currentPos);
+        int tableChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        while (tableChoice != 1 && tableChoice != 2) {
+            System.out.println("Invalid option");
+            System.out.println("Choose table to type generator: ");
+
+            for (int i = 0; i < optionNums.length; i++) {
+                System.out.printf("\t%d. %s\n", optionNums[i], options[i]);
+            }
+        
+            tableChoice = scanner.nextInt();
+        }
+
+        switch (tableChoice) {
+            case 1 -> {
+                System.out.println("Enter seconds to simulate, initial acceleration, initial veloocity, initial position: ");
+                double seconds = scanner.nextDouble();
+                double acceleration = scanner.nextDouble();
+                double velocity = scanner.nextDouble();
+                double position = scanner.nextDouble();
+
+                System.out.println("Time (s) | Velocity (m/s) | Position (x) ");
+                System.out.println("---------+----------------+-------------");
+
+                for (int i = 0; i <= seconds; i++) {
+                    double currentVelo = velocity + (acceleration * i);
+                    double currentPos = position + (velocity * i) + (0.5 * acceleration * i * i);
+
+                    System.out.printf("%-9d| %-15.2f| %-12.2f%n", i, currentVelo, currentPos);
+                }
+            }
+            case 2 -> {
+                System.out.println("Enter seconds to simulate, initial position, initial velocity for x values: ");
+                double time = scanner.nextDouble();
+                double initPosX = scanner.nextDouble();
+                double initVeloX = scanner.nextDouble();
+
+                System.out.println("Enter initial position, initial velocity for y values: ");
+                double initPosY = scanner.nextDouble();
+                double initVeloY = scanner.nextDouble();
+
+                final double GRAVITY = -9.18;
+
+                System.out.println("Time (s) | Position (x) | Position (y) ");
+                System.out.println("---------+--------------+--------------");
+
+                for (int i = 0; i <= time; i++) {
+                    double motionX = (initPosX + initVeloX) * i;
+                    double motionY = ((initPosY + initVeloY) * i) - ((.5) * GRAVITY *(Math.pow(i, 2)));
+
+                    System.out.printf("%-9d| %-12.2f| %-12.2f%n", i, motionX, motionY);
+                }
+            }
+            default -> {
+            }
         }
     }
 
     public static void practiceProblems(Scanner scanner) {
-        System.out.println("HI");
+        System.out.println("Coming Soon....");
     }
 
     public static void position(Scanner scanner) {

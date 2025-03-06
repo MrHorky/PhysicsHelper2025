@@ -1,7 +1,32 @@
 import java.util.Scanner;
 public class LabFive {
     public static void main(String[] args) {
+        System.out.println("Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow");
         Scanner scan = new Scanner(System.in);
+        boolean meow = true;
+        while (meow){
+        System.out.println("1. Calculators\n2. Table Generators\n3. Practice Problems\n4. Exit\n");
+        int option = scan.nextInt();
+        switch(option) {
+            case 1:
+                calculator(scan);
+                break;
+            case 2:
+                tabler(scan);
+                break;
+            case 3:
+                System.out.println("Practice Problems");
+                break;
+            default:
+                meow = false;
+                break;
+        }
+    } 
+    }
+
+
+    public static void calculator(Scanner scan) {
+        //Scanner scan = new Scanner(System.in);
         String flag = "Y";
         int meow = 0;
         String[] options = {"1. Position: \n", "2. Velocity: \n", "3. Acceleration: \n", "4: Projectile Motion X-Direction: \n", "5. Projectile Motion Y-Direction: \n"};
@@ -79,6 +104,32 @@ public class LabFive {
             } else {
                 System.out.println("Thank you for solving multiple equations!");
             }
+        }
+    }
+    public static void tabler(Scanner scan) {
+        System.out.println("Enter a number of seconds to simulate: ");
+        double t = scan.nextDouble();
+        System.out.println("Enter initial acceleration in m/s^2: ");
+        double a0 = scan.nextDouble();
+        System.out.println("Enter initial x velocity in m/s: ");
+        double vx0 = scan.nextDouble();
+        System.out.println("Enter initial x position in m: ");
+        double x0 = scan.nextDouble();
+        System.out.println("Enter initial y position in m: ");
+        double y0 = scan.nextDouble();
+        System.out.println("Enter initial y velocity in m/s: ");
+        double vy0 = scan.nextDouble();
+        System.out.println("t(s)\t|v(m/s)\t|x(m)\t|y(m)");
+        System.out.println("--------+-------+-----");
+        for (int i = 0;i<t+1;i++){
+            double y = y0 + vy0*i-.5*9.8*Math.pow(i, 2);
+            if (y <= 0){
+                y = 0;
+            }
+            System.out.println(i + "\t|"+ vx0 + "\t|" + x0 + "\t" + y);
+            vx0 = vx0 + a0;
+            x0 = x0 + vx0;
+            
         }
     }
  }

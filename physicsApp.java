@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -145,65 +146,86 @@ public class physicsApp {
 
     public static void practiceProblems(Scanner scanner) {
         Random rand = new Random();
-        String[] problemTypes = {"Position", "Velocity", "Acceleration"};
+        String[] problems = {"Position", "Velocity", "Acceleration"};
         int[] nums = {1, 2, 3};
         
-        System.out.println("What type of problem would you like to solve?: ");
-        for (int i = 0; i < nums.length; i++) {
-            System.out.printf("\t %d. %s\n", nums[i], problemTypes[i]);
+        int choice = 0;
+        boolean validInput = false;
+        while (!validInput) {
+            System.out.println("What type of problem would you like to solve?: ");
+            for (int i = 0; i < nums.length; i++) {
+                System.out.printf("\t %d. %s\n", nums[i], problems[i]);
+            }
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+                validInput = true;
+            } 
+            catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                scanner.nextLine();
+            }
         }
-        
-        int choice = scanner.nextInt();
-        scanner.nextLine();
         
         while (choice > 3 && choice != 0) {
             System.out.println("Invalid option. Choose again:");
             for (int i = 0; i < nums.length; i++) {
-                System.out.printf("\t %d. %s\n", nums[i], problemTypes[i]);
+                System.out.printf("\t %d. %s\n", nums[i], problems[i]);
             }
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                scanner.nextLine();
+                choice = 4;
+            }
         }
         
-        double userAnswer, correctAnswer;
+        double userAnswer = 0, correctAnswer = 0;
+        String formula = "";
+        
         switch (choice) {
             case 1 -> {
                 double initPos = rand.nextDouble() * 50;
                 double initVelo = rand.nextDouble() * 20;
                 double t = rand.nextDouble() * 10 + 1;
                 double a = rand.nextDouble() * 10;
-        
                 int unknown = rand.nextInt(4);
                 switch (unknown) {
                     case 0 -> {
                         correctAnswer = initPos + (initVelo * t) + (0.5 * a * t * t);
                         System.out.printf("Given x₀ = %.2f, v₀ = %.2f, t = %.2f, a = %.2f, calculate x: ", initPos, initVelo, t, a);
+                        formula = "x = x₀ + v₀t + 0.5at²";
                     }
                     case 1 -> {
                         correctAnswer = (initVelo * t) + (0.5 * a * t * t);
                         System.out.printf("Given x = ?, v₀ = %.2f, t = %.2f, a = %.2f, calculate x₀: ", initVelo, t, a);
+                        formula = "x₀ = x - v₀t - 0.5at²";
                     }
                     case 2 -> {
                         correctAnswer = (initPos - (0.5 * a * t * t)) / t;
                         System.out.printf("Given x = %.2f, x₀ = %.2f, t = %.2f, a = %.2f, calculate v₀: ", initPos, initPos, t, a);
+                        formula = "v₀ = (x - x₀ - 0.5at²) / t";
                     }
                     default -> {
                         correctAnswer = (initPos - (initVelo * t)) / (0.5 * t * t);
                         System.out.printf("Given x = %.2f, x₀ = %.2f, v₀ = %.2f, t = %.2f, calculate a: ", initPos, initPos, initVelo, t);
+                        formula = "a = 2(x - x₀ - v₀t) / t²";
                     }
                 }
             }
             case 2 -> {
                 double deltaX = rand.nextDouble() * 50;
                 double deltaT = rand.nextDouble() * 10 + 1;
-        
                 if (rand.nextBoolean()) {
                     correctAnswer = deltaX / deltaT;
                     System.out.printf("Given Δx = %.2f and Δt = %.2f, calculate v: ", deltaX, deltaT);
-                } 
-                else {
+                    formula = "v = Δx / Δt";
+                } else {
                     correctAnswer = deltaT * (deltaX / deltaT);
                     System.out.printf("Given v = %.2f and Δt = %.2f, calculate Δx: ", deltaX / deltaT, deltaT);
+                    formula = "Δx = v * Δt";
                 }
             }
             case 3 -> {
@@ -212,24 +234,38 @@ public class physicsApp {
                 if (rand.nextBoolean()) {
                     correctAnswer = deltaV / deltaT;
                     System.out.printf("Given Δv = %.2f and Δt = %.2f, calculate a: ", deltaV, deltaT);
-                } 
-                else {
+                    formula = "a = Δv / Δt";
+                } else {
                     correctAnswer = deltaT * (deltaV / deltaT);
                     System.out.printf("Given a = %.2f and Δt = %.2f, calculate Δv: ", deltaV / deltaT, deltaT);
+                    formula = "Δv = a * Δt";
                 }
             }
             default -> {
                 return;
             }
         }
+
+        validInput = false;
+        while (!validInput) {
+            try {
+                userAnswer = scanner.nextDouble();
+                validInput = true;
+            } 
+            catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number for your answer.");
+                scanner.nextLine();
+            }
+        }
         
-        userAnswer = scanner.nextDouble();
         if (Math.abs(userAnswer - correctAnswer) < 0.01) {
             System.out.println("Correct!");
         } 
         else {
             System.out.printf("Incorrect! The correct answer is %.2f\n", correctAnswer);
-        }    
+            System.out.println("To solve this problem, you should use the formula: " + formula);
+            System.out.println("Substituting the values and solving step by step will give you the correct answer.");
+        }
     }
 
     public static void position(Scanner scanner) {

@@ -175,7 +175,8 @@ public class physicsApp {
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
-            } catch (InputMismatchException e) {
+            } 
+            catch (InputMismatchException e) {
                 System.out.println("Please enter a valid number.");
                 scanner.nextLine();
                 choice = 4;
@@ -208,7 +209,7 @@ public class physicsApp {
                         System.out.printf("Given x = %.2f, x₀ = %.2f, t = %.2f, a = %.2f, calculate v₀: ", initPos, initPos, t, a);
                         formula = "v₀ = (x - x₀ - 0.5at²) / t";
                     }
-                    default -> {
+                    case 3 -> {
                         correctAnswer = (initPos - (initVelo * t)) / (0.5 * t * t);
                         System.out.printf("Given x = %.2f, x₀ = %.2f, v₀ = %.2f, t = %.2f, calculate a: ", initPos, initPos, initVelo, t);
                         formula = "a = 2(x - x₀ - v₀t) / t²";
@@ -222,7 +223,8 @@ public class physicsApp {
                     correctAnswer = deltaX / deltaT;
                     System.out.printf("Given Δx = %.2f and Δt = %.2f, calculate v: ", deltaX, deltaT);
                     formula = "v = Δx / Δt";
-                } else {
+                } 
+                else {
                     correctAnswer = deltaT * (deltaX / deltaT);
                     System.out.printf("Given v = %.2f and Δt = %.2f, calculate Δx: ", deltaX / deltaT, deltaT);
                     formula = "Δx = v * Δt";
@@ -235,7 +237,8 @@ public class physicsApp {
                     correctAnswer = deltaV / deltaT;
                     System.out.printf("Given Δv = %.2f and Δt = %.2f, calculate a: ", deltaV, deltaT);
                     formula = "a = Δv / Δt";
-                } else {
+                } 
+                else {
                     correctAnswer = deltaT * (deltaV / deltaT);
                     System.out.printf("Given a = %.2f and Δt = %.2f, calculate Δv: ", deltaV / deltaT, deltaT);
                     formula = "Δv = a * Δt";

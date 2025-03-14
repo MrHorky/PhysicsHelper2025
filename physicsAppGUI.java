@@ -1,7 +1,6 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.naming.spi.DirStateFactory;
 import javax.swing.*;
 
 public class physicsAppGUI extends JFrame { 
@@ -57,11 +56,8 @@ public class physicsAppGUI extends JFrame {
                 practiceProblems();
             }
         });
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exit();
-            }
+        exit.addActionListener((ActionEvent e) -> {
+            exit();
         });
     }
     
@@ -89,23 +85,20 @@ public class physicsAppGUI extends JFrame {
 
         add(calculatorButton);
 
-        position.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                getContentPane().removeAll();
-                positionGUI();
-                revalidate();
-                repaint();
-            }
+        position.addActionListener((ActionEvent e) -> {
+            getContentPane().removeAll();
+            positionGUI();
+            revalidate();
+            repaint();
         });
-        velocity.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                getContentPane().removeAll();
-                velocityGUI();
-                revalidate();
-                repaint();
-            }
+        velocity.addActionListener((ActionEvent e) -> {
+            getContentPane().removeAll();
+            velocityGUI();
+            revalidate();
+            repaint();
         });
         acceleration.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
                 accelerationGUI();
@@ -114,6 +107,7 @@ public class physicsAppGUI extends JFrame {
             }
         });
         angularSpeed.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
                 angularSpeedGUI();
@@ -122,6 +116,7 @@ public class physicsAppGUI extends JFrame {
             }
         });
         angleOfMovement.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
                 angleOfMovementGUI();
@@ -166,6 +161,7 @@ public class physicsAppGUI extends JFrame {
         getContentPane().add(resultPanel);
 
         calculate.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent e) {
                 double initPos = Double.parseDouble(initPosNum.getText());
                 double initVelo = Double.parseDouble(initVeloNum.getText());

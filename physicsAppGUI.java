@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.naming.spi.DirStateFactory;
 import javax.swing.*;
 
 public class physicsAppGUI extends JFrame { 
@@ -131,7 +132,50 @@ public class physicsAppGUI extends JFrame {
     }
 
     private void positionGUI() {
-        // GUI Elements Here //
+        JPanel titlePanel = new JPanel(new GridLayout());
+        JLabel title = new JLabel("Position Calculator", SwingConstants.CENTER);
+        titlePanel.add(title, BorderLayout.CENTER);
+
+        // Area for entering values for the position calculator //
+        JPanel calculation = new JPanel(new GridLayout(1, 4, 2, 0));
+
+        JLabel initPosPrompt = new JLabel("Initial Position: ");
+        JTextField initPosNum = new JTextField(6);
+        JLabel initVeloPrompt = new JLabel("Initial Velocity: ");
+        JTextField initVeloNum = new JTextField(6);
+        JLabel timePrompt = new JLabel("Time: ");
+        JTextField timeNum = new JTextField(6);
+        JLabel accelerationPrompt = new JLabel("Initial Position: ");
+        JTextField accelerationNum = new JTextField(6);
+        JButton calculate = new JButton("Calculate");
+        
+        calculation.add(initPosPrompt);
+        calculation.add(initPosNum);
+        calculation.add(initVeloPrompt);
+        calculation.add(initVeloNum);
+        calculation.add(timePrompt);
+        calculation.add(timeNum);
+        calculation.add(accelerationPrompt);
+        calculation.add(accelerationNum);
+        calculation.add(calculate);
+        getContentPane().add(calculation);
+
+        JPanel resultPanel = new JPanel();
+        JLabel result = new JLabel("The current position is: ");
+        resultPanel.add(result);
+        getContentPane().add(resultPanel);
+
+        calculate.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                double initPos = Double.parseDouble(initPosNum.getText());
+                double initVelo = Double.parseDouble(initVeloNum.getText());
+                double time = Double.parseDouble(timeNum.getText()); 
+                double acc = Double.parseDouble(accelerationNum.getText());
+                double currPos = (initPos) + (initVelo * time) + ((1.0 / 2.0) * acc * Math.pow(time, 2));
+
+                result.setText("The current position is: " + String.format("%.2f", currPos));
+            }
+        });
     }
 
     private void velocityGUI() {

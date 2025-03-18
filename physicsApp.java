@@ -134,7 +134,7 @@ public class physicsApp {
 
                 for (int i = 0; i <= time; i++) {
                     double motionX = (initPosX + initVeloX) * i;
-                    double motionY = ((initPosY + initVeloY) * i) - ((.5) * GRAVITY *(Math.pow(i, 2)));
+                    double motionY = ((initPosY + initVeloY) * i) - ((.5) * GRAVITY * (Math.pow(i, 2)));
 
                     System.out.printf("%-9d| %-12.2f| %-12.2f%n", i, motionX, motionY);
                 }

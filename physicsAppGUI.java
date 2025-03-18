@@ -3,6 +3,16 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/* BACK BUTTON 
+    JButton back = new JButton("Home");
+    back.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            app();
+        }
+    });
+    INSERT PANEL AREA HERE
+*/
+
 public class physicsAppGUI extends JFrame { 
 
     public physicsAppGUI() {
@@ -11,6 +21,23 @@ public class physicsAppGUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         app();
+    }
+
+    private void backButton() {
+        JPanel backPanel = new JPanel(new FlowLayout());
+        JButton back = new JButton("Home");
+        backPanel.add(back);
+        add(backPanel);
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                app();
+                revalidate();
+                repaint();
+            }
+        });
     }
 
     private void app() {
@@ -85,6 +112,8 @@ public class physicsAppGUI extends JFrame {
 
         add(calculatorButton);
 
+        backButton();
+
         position.addActionListener((ActionEvent e) -> {
             getContentPane().removeAll();
             positionGUI();
@@ -127,13 +156,14 @@ public class physicsAppGUI extends JFrame {
     }
 
     private void positionGUI() {
-        JPanel titlePanel = new JPanel(new GridLayout());
+        setLayout(new GridLayout(5, 1));
+
+        JPanel titlePanel = new JPanel(new BorderLayout());
         JLabel title = new JLabel("Position Calculator", SwingConstants.CENTER);
         titlePanel.add(title, BorderLayout.CENTER);
-
-        // Area for entering values for the position calculator //
-        JPanel calculation = new JPanel(new GridLayout(1, 4, 2, 0));
-
+        add(titlePanel);
+        
+        JPanel calculation = new JPanel(new GridLayout(1, 4, 10, 0));
         JLabel initPosPrompt = new JLabel("Initial Position: ");
         JTextField initPosNum = new JTextField(6);
         JLabel initVeloPrompt = new JLabel("Initial Velocity: ");
@@ -153,14 +183,16 @@ public class physicsAppGUI extends JFrame {
         calculation.add(accelerationPrompt);
         calculation.add(accelerationNum);
         calculation.add(calculate);
-        getContentPane().add(calculation);
+        add(calculation);
 
-        JPanel resultPanel = new JPanel();
+        JPanel resultPanel = new JPanel(new FlowLayout());
         JLabel result = new JLabel("The current position is: ");
         resultPanel.add(result);
-        getContentPane().add(resultPanel);
+        add(resultPanel);
 
-        calculate.addActionListener(new ActionListener(){
+        backButton();
+
+        calculate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double initPos = Double.parseDouble(initPosNum.getText());
@@ -175,19 +207,202 @@ public class physicsAppGUI extends JFrame {
     }
 
     private void velocityGUI() {
-        // GUI Elements Here //
+        setLayout(new GridLayout(5, 1));
+
+        JPanel titlePanel = new JPanel(new BorderLayout());
+        JLabel title = new JLabel("Velocity Calculator", SwingConstants.CENTER);
+        titlePanel.add(title, BorderLayout.CENTER);
+        add(titlePanel);
+        
+        JPanel calculation = new JPanel(new GridLayout(1, 4, 10, 0));
+        JLabel finalPosPrompt = new JLabel("Final Position: ");
+        JTextField finalPosNum = new JTextField(6);
+        JLabel initPosPrompt = new JLabel("Initial Position: ");
+        JTextField initPosNum = new JTextField(6);
+        JLabel finalTimePrompt = new JLabel("Final Time: ");
+        JTextField finalTimeNum = new JTextField(6);
+        JLabel initTimePrompt = new JLabel("Initial Time: ");
+        JTextField initTimeNum = new JTextField(6);
+        JButton calculate = new JButton("Calculate");
+        
+        calculation.add(finalPosPrompt);
+        calculation.add(finalPosNum);
+        calculation.add(initPosPrompt);
+        calculation.add(initPosNum);
+        calculation.add(finalTimePrompt);
+        calculation.add(finalTimeNum);
+        calculation.add(initTimePrompt);
+        calculation.add(initTimeNum);
+        calculation.add(calculate);
+        add(calculation);
+
+        JPanel resultPanel = new JPanel(new FlowLayout());
+        JLabel result = new JLabel("The current velocity is: ");
+        resultPanel.add(result);
+        add(resultPanel);
+
+        backButton();
+
+        calculate.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double finalPos = Double.parseDouble(finalPosNum.getText());
+                double initPos = Double.parseDouble(initPosNum.getText());
+                double finalTime = Double.parseDouble(finalTimeNum.getText()); 
+                double initTime = Double.parseDouble(initTimeNum.getText());
+                double currentVelocity = (finalPos - initPos) / (finalTime - initTime);
+
+                result.setText("The current velocity is: " + String.format("%.2f", currentVelocity));
+            }
+        });
     }
 
     private void accelerationGUI() {
-        // GUI Elements Here //
+        setLayout(new GridLayout(5, 1));
+
+        JPanel titlePanel = new JPanel(new BorderLayout());
+        JLabel title = new JLabel("Acceleration Calculator", SwingConstants.CENTER);
+        titlePanel.add(title, BorderLayout.CENTER);
+        add(titlePanel);
+        
+        JPanel calculation = new JPanel(new GridLayout(1, 4, 10, 0));
+        JLabel finalVeloPrompt = new JLabel("Final Velocity: ");
+        JTextField finalVeloNum = new JTextField(6);
+        JLabel initVeloPrompt = new JLabel("Initial Velocity: ");
+        JTextField initVeloNum = new JTextField(6);
+        JLabel finalTimePrompt = new JLabel("Final Time: ");
+        JTextField finalTimeNum = new JTextField(6);
+        JLabel initTimePrompt = new JLabel("Initial Time: ");
+        JTextField initTimeNum = new JTextField(6);
+        JButton calculate = new JButton("Calculate");
+        
+        calculation.add(finalVeloPrompt);
+        calculation.add(finalVeloNum);
+        calculation.add(initVeloPrompt);
+        calculation.add(initVeloNum);
+        calculation.add(finalTimePrompt);
+        calculation.add(finalTimeNum);
+        calculation.add(initTimePrompt);
+        calculation.add(initTimeNum);
+        calculation.add(calculate);
+        add(calculation);
+
+        JPanel resultPanel = new JPanel(new FlowLayout());
+        JLabel result = new JLabel("The current acceleration is: ");
+        resultPanel.add(result);
+        add(resultPanel);
+
+        backButton();
+
+        calculate.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double finalVelo = Double.parseDouble(finalVeloNum.getText());
+                double initVelo = Double.parseDouble(initVeloNum.getText());
+                double finalTime = Double.parseDouble(finalTimeNum.getText()); 
+                double initTime = Double.parseDouble(initTimeNum.getText());
+                double currentVelocity = (finalVelo - initVelo) / (finalTime - initTime);
+
+                result.setText("The acceleration is: " + String.format("%.2f", currentVelocity));
+            }
+        });
     }
 
     private void angularSpeedGUI() {
-        // GUI Elements Here //
+        setLayout(new GridLayout(5, 1));
+
+        JPanel titlePanel = new JPanel(new BorderLayout());
+        JLabel title = new JLabel("Angular Speed Calculator", SwingConstants.CENTER);
+        titlePanel.add(title, BorderLayout.CENTER);
+        add(titlePanel);
+        
+        JPanel calculation = new JPanel(new GridLayout(1, 4, 10, 0));
+        JLabel initVeloPrompt = new JLabel("Initial Velocity: ");
+        JTextField initVeloNum = new JTextField(6);
+        JLabel accelerationPrompt = new JLabel("Acceleration: ");
+        JTextField accelerationNum = new JTextField(6);
+        JLabel timePrompt = new JLabel("Time: ");
+        JTextField timeNum = new JTextField(6);
+        JButton calculate = new JButton("Calculate");
+        
+        calculation.add(initVeloPrompt);
+        calculation.add(initVeloNum);
+        calculation.add(accelerationPrompt);
+        calculation.add(accelerationNum);
+        calculation.add(timePrompt);
+        calculation.add(timeNum);
+        calculation.add(calculate);
+        add(calculation);
+
+        JPanel resultPanel = new JPanel(new FlowLayout());
+        JLabel result = new JLabel("The angular speed is: ");
+        resultPanel.add(result);
+        add(resultPanel);
+
+        backButton();
+
+        calculate.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double initVelo = Double.parseDouble(initVeloNum.getText());
+                double acceleration = Double.parseDouble(accelerationNum.getText());
+                double time = Double.parseDouble(timeNum.getText());
+                double angularSpeed = initVelo + (acceleration * time);
+
+                result.setText("The angular speed is: " + String.format("%.2f", angularSpeed));
+            }
+        });
     }
 
     private void angleOfMovementGUI() {
-        // GUI Elements Here //
+        setLayout(new GridLayout(5, 1));
+
+        JPanel titlePanel = new JPanel(new BorderLayout());
+        JLabel title = new JLabel("Angle Of Movement Calculator", SwingConstants.CENTER);
+        titlePanel.add(title, BorderLayout.CENTER);
+        add(titlePanel);
+        
+        JPanel calculation = new JPanel(new GridLayout(1, 4, 10, 0));
+        JLabel initPosPrompt = new JLabel("Initial Position: ");
+        JTextField initPosNum = new JTextField(6);
+        JLabel initVeloPrompt = new JLabel("Initial Velocity: ");
+        JTextField initVeloNum = new JTextField(6);
+        JLabel timePrompt = new JLabel("Time: ");
+        JTextField timeNum = new JTextField(6);
+        JLabel accelerationPrompt = new JLabel("Acceleration: ");
+        JTextField accelerationNum = new JTextField(6);
+        JButton calculate = new JButton("Calculate");
+
+        calculation.add(initPosPrompt);
+        calculation.add(initPosNum);
+        calculation.add(initVeloPrompt);
+        calculation.add(initVeloNum);
+        calculation.add(timePrompt);
+        calculation.add(timeNum);
+        calculation.add(accelerationPrompt);
+        calculation.add(accelerationNum);
+        calculation.add(calculate);
+        add(calculation);
+
+        JPanel resultPanel = new JPanel(new FlowLayout());
+        JLabel result = new JLabel("The angle of movement is: ");
+        resultPanel.add(result);
+        add(resultPanel);
+
+        backButton();
+
+        calculate.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double initPos = Double.parseDouble(initPosNum.getText());
+                double initVelo = Double.parseDouble(initVeloNum.getText());
+                double time = Double.parseDouble(timeNum.getText());
+                double acceleration = Double.parseDouble(accelerationNum.getText());
+                double angleOfMovement = initPos + (initVelo * time) + ((0.5) * acceleration * Math.pow(time, 2));
+
+                result.setText("The angle of movement is: " + String.format("%.2f", angleOfMovement));
+            }
+        });
     }
 
     private void tableGenerator() {

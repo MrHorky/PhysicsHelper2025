@@ -1,3 +1,20 @@
+/* A LITTLE NOTE FOR ANY VIEWER */
+
+/*
+    * Dear Programmer,
+    * When I wrote this code, only God and
+    * I knew how it worked
+    * Now, only God knows it!
+    * 
+    * Therefore, if you are trying to optimize
+    * this code and it fails (most surely),
+    * please increase this counter as a 
+    * warning for the next person: 
+    * 
+    * total hours wasted here = 254
+    * 
+*/
+
 
 import java.awt.*;
 import java.awt.event.*;

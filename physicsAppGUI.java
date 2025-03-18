@@ -18,7 +18,7 @@ public class physicsAppGUI extends JFrame {
         app();
     }
 
-    private void backButton() {
+    private void homeButton() {
         JPanel backPanel = new JPanel(new FlowLayout());
         JButton back = new JButton("Home");
         backPanel.add(back);
@@ -29,6 +29,57 @@ public class physicsAppGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
                 app();
+                revalidate();
+                repaint();
+            }
+        });
+    }
+
+    private void calculatorHomeButton() {
+        JPanel backPanel = new JPanel(new FlowLayout());
+        JButton back = new JButton("Calculators");
+        backPanel.add(back);
+        add(backPanel);
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                calculators();
+                revalidate();
+                repaint();
+            }
+        });
+    }
+
+    private void tableGeneratorHomeButton() {
+        JPanel backPanel = new JPanel(new FlowLayout());
+        JButton back = new JButton("Table Generators");
+        backPanel.add(back);
+        add(backPanel);
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                tableGenerator();
+                revalidate();
+                repaint();
+            }
+        });
+    }
+
+    private void practiceProblemHomeButton() {
+        JPanel backPanel = new JPanel(new FlowLayout());
+        JButton back = new JButton("Practice Problems");
+        backPanel.add(back);
+        add(backPanel);
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getContentPane().removeAll();
+                practiceProblems();
                 revalidate();
                 repaint();
             }
@@ -113,7 +164,7 @@ public class physicsAppGUI extends JFrame {
 
         add(calculatorButton);
 
-        backButton();
+        homeButton();
 
         position.addActionListener((ActionEvent e) -> {
             getContentPane().removeAll();
@@ -191,7 +242,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        calculatorHomeButton();
+        homeButton();
 
         calculate.addActionListener(new ActionListener() {
             @Override
@@ -242,7 +294,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        calculatorHomeButton();
+        homeButton();
 
         calculate.addActionListener(new ActionListener() {
             @Override
@@ -293,7 +346,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        calculatorHomeButton();
+        homeButton();
 
         calculate.addActionListener(new ActionListener() {
             @Override
@@ -340,7 +394,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        calculatorHomeButton();
+        homeButton();
 
         calculate.addActionListener(new ActionListener() {
             @Override
@@ -390,7 +445,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        calculatorHomeButton();
+        homeButton();
 
         calculate.addActionListener(new ActionListener() {
             @Override
@@ -421,7 +477,7 @@ public class physicsAppGUI extends JFrame {
         selectionPanel.add(projectileMotion);
         add(selectionPanel);
 
-        backButton();
+        homeButton();
 
         regular.addActionListener(new ActionListener() {
             @Override
@@ -469,7 +525,8 @@ public class physicsAppGUI extends JFrame {
         calculation.add(write);
         add(calculation);
 
-        backButton();
+        tableGeneratorHomeButton();
+        homeButton();
 
         write.addActionListener(new ActionListener() {
             @Override
@@ -530,7 +587,8 @@ public class physicsAppGUI extends JFrame {
         calculation.add(write);
         add(calculation);
 
-        backButton();
+        tableGeneratorHomeButton();
+        homeButton();
 
         write.addActionListener(new ActionListener() {
             @Override
@@ -586,7 +644,7 @@ public class physicsAppGUI extends JFrame {
         selectionPanel.add(acceleration);
         add(selectionPanel);
 
-        backButton();
+        homeButton();
 
         position.addActionListener(new ActionListener() {
             @Override
@@ -681,7 +739,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        practiceProblemHomeButton();
+        homeButton();
 
         submit.addActionListener(new ActionListener() {
             @Override
@@ -739,7 +798,8 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+        practiceProblemHomeButton();
+        homeButton();
 
         submit.addActionListener(new ActionListener() {
             @Override
@@ -749,8 +809,7 @@ public class physicsAppGUI extends JFrame {
                     result.setText("Correct!");
                 } 
                 else {
-                    result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s",
-                        correctAnswer, formula));
+                    result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s", correctAnswer, formula));
                 }
             }
         });
@@ -775,7 +834,8 @@ public class physicsAppGUI extends JFrame {
             correctAnswer = deltaV / deltaT;
             formula = "a = Δv / Δt";
             problemLabel.setText(String.format("Given Δv = %.2f and Δt = %.2f, calculate a: ", deltaV, deltaT));
-        } else {
+        } 
+        else {
             correctAnswer = deltaT * (deltaV / deltaT);
             formula = "Δv = a * Δt";
             problemLabel.setText(String.format("Given a = %.2f and Δt = %.2f, calculate Δv: ", deltaV / deltaT, deltaT));
@@ -797,7 +857,9 @@ public class physicsAppGUI extends JFrame {
         resultPanel.add(result);
         add(resultPanel);
 
-        backButton();
+
+        practiceProblemHomeButton();
+        homeButton();
 
         submit.addActionListener(new ActionListener() {
             @Override
@@ -807,8 +869,7 @@ public class physicsAppGUI extends JFrame {
                     result.setText("Correct!");
                 } 
                 else {
-                    result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s",
-                        correctAnswer, formula));
+                    result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s", correctAnswer, formula));
                 }
             }
         });

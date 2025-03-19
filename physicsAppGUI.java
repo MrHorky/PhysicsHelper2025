@@ -12,7 +12,7 @@
     * please increase this counter as a 
     * warning for the next person: 
     * 
-    * total hours wasted here = 254
+    * total hours wasted here = 255
     * 
 */
 
@@ -615,7 +615,7 @@ public class physicsAppGUI extends JFrame {
                 double initVeloX = Double.parseDouble(initVeloXNum.getText());
                 double initPosY = Double.parseDouble(initPosYNum.getText());
                 double initVeloY = Double.parseDouble(initVeloYNum.getText());
-                final double GRAVITY = -9.18;
+                double GRAVITY = -9.18;
 
                 try {
                     FileWriter writer = new FileWriter("projectileMotionTable.txt");
@@ -627,7 +627,7 @@ public class physicsAppGUI extends JFrame {
                         double motionX = (initPosX + initVeloX) * i;
                         double motionY = ((initPosY + initVeloY) * i) - ((0.5) * GRAVITY * Math.pow(i, 2));
 
-                        String line = String.format("%-9d| %-12.2f| %-12.2f%n", i, motionX, motionY);
+                        String line = String.format("%-9d| %-12.2f | %-12.2f%n", i, motionX, motionY);
                         writer.write(line);
                     }
                     writer.close();

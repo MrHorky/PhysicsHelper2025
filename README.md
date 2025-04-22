@@ -12,6 +12,7 @@
         - cd PhysicsHelper2025/physics-app 
     3. copy and paste or hand type this in the terminal:
         - Linux: javac *.java && mv *.class build/classes && java -cp build/classes main
+            - This will compile all the java files, move them into the build/classes directory so they're not in the way and then run the main file
         - Windows: idk cuz powershell sucks, use the debugger in this case because you already use windows so i think you can infer what that means
         - Mac OS: should be relatively similar to the linux command
 

@@ -3,6 +3,11 @@
 
 # How To Run
     1. Dont be a loser and use a debugger to run it
+        - Mostly because you are a loser if you do BUT...
+        - It wont run because it doesnt know the class file is in build/classes
+        - But also, you'll run into package not found or package mismatch errors
+        - Hand-compiling solves this
+        - Real programmers hand compile
     2. Make sure you are in the proper directory by running this in the terminal:
         - cd PhysicsHelper2025/physics-app 
     3. copy and paste or hand type this in the terminal:

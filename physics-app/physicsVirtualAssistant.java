@@ -43,19 +43,19 @@ public class physicsVirtualAssistant {
             String wantedThing = statement.substring(position).trim();
             response = "Would you be happy if you had " + wantedThing + "?";
         }
-        else if (statement.contains("add") || statement.contains("plus") || statement.contains("sum") || (statement.toLowerCase().contains("what is") && statement.contains("+"))) {
+        else if (statement.contains("add") || statement.contains("plus") || statement.contains("+") || (statement.toLowerCase().contains("what is") && statement.contains("+"))) {
             int sum = add(statement);
             response = String.format("%d", sum);
         }
-        else if (statement.contains("subtract") || statement.contains("minus") || statement.contains("difference") || (statement.toLowerCase().contains("what is") && statement.contains("-"))) {
+        else if (statement.contains("subtract") || statement.contains("minus") || statement.contains("-") || (statement.toLowerCase().contains("what is") && statement.contains("-"))) {
             int difference = subtract(statement);
             response = String.format("%d", difference);
         }
-        else if (statement.contains("multiply") || statement.contains("times") || statement.contains("product") || (statement.toLowerCase().contains("what is") && statement.contains("*"))) {
+        else if (statement.contains("multiply") || statement.contains("times") || statement.contains("*") || (statement.toLowerCase().contains("what is") && statement.contains("*"))) {
             int product = multiply(statement);
             response = String.format("%d", product);
         }
-        else if (statement.contains("divide") || statement.contains("quotient") || statement.contains("divided by") || (statement.toLowerCase().contains("what is") && statement.contains("/"))) {
+        else if (statement.contains("divide") || statement.contains("/") || statement.contains("divided by") || (statement.toLowerCase().contains("what is") && statement.contains("/"))) {
             try {
                 int quotient = divide(statement);
                 response = String.format("%d", quotient);
@@ -68,15 +68,15 @@ public class physicsVirtualAssistant {
             double result = squareRoot(statement);
             response = String.format("%.2f", result);
         }
-        else if (statement.toLowerCase().contains("exponent") || statement.toLowerCase().contains("power") || statement.toLowerCase().contains("raised") || statement.contains("^")) {
+        else if (statement.toLowerCase().contains("^") || statement.toLowerCase().contains("to the power of") || statement.toLowerCase().contains("raised to the")) {
             int result = exponentiate(statement);
             response = String.format("%d", result);
         }
-        else if (statement.toLowerCase().contains("modulo") || statement.toLowerCase().contains("mod") || statement.toLowerCase().contains("remainder") || statement.contains("%")) {
+        else if (statement.toLowerCase().contains("modulo") || statement.toLowerCase().contains("mod") || statement.contains("%")) {
             int result = modulo(statement);
             response = String.format("%d", result);
         }
-        else if (statement.toLowerCase().contains("absolute") || statement.toLowerCase().contains("abs")) {
+        else if (statement.toLowerCase().contains("absolute value") || statement.toLowerCase().contains("abs") || statement.toLowerCase().contains("what is the absolute value of")) {
             int result = absoluteValue(statement);
             response = String.format("%d", result);
         }

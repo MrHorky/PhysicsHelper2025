@@ -11,49 +11,42 @@ import javax.swing.SwingConstants;
 
 public class physicsAppGUI extends JFrame {
     
-    // Components that need to be accessed across the application
+    
     private physicsAppButtons appButtons;
     private physicsAppCalculators appCalculators;
     private physicsAppTables appTables;
     private physicsAppProblems appProblems;
-    private physicsChatBot appAssistant; // New component
+    private physicsChatBot appAssistant;
     
-    private JPanel contentContainer; // Container for screen content
-    private JPanel mainContentPanel; // Main content area that changes with each screen
+    private JPanel contentContainer; 
+    private JPanel mainContentPanel; 
 
     public physicsAppGUI() {
-        setSize(800, 600); // Increased size to accommodate assistant
+        setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        // Use BorderLayout for the frame
         setLayout(new BorderLayout());
-        
-        // Create a container panel for the changing content
+
         contentContainer = new JPanel(new BorderLayout());
         add(contentContainer, BorderLayout.CENTER);
         
-        // Create main content panel (this will be changed for each screen)
         mainContentPanel = new JPanel(new GridLayout(5, 1));
         contentContainer.add(mainContentPanel, BorderLayout.CENTER);
-        
-        // Create the assistant panel
+    
         appAssistant = new physicsChatBot(this);
         JPanel assistantPanel = appAssistant.getChatPanel();
         add(assistantPanel, BorderLayout.SOUTH);
         
-        // Initialize other managers
         appButtons = new physicsAppButtons(this);
         appCalculators = new physicsAppCalculators(this);
         appTables = new physicsAppTables(this);
         appProblems = new physicsAppProblems(this);
-        
-        // Display home screen
+      
         showHomeScreen();
         
         setVisible(true);
     }
     
-    // Override add method to route components to the main content panel
     @Override
     public Component add(Component comp) {
         return mainContentPanel.add(comp);
@@ -75,7 +68,6 @@ public class physicsAppGUI extends JFrame {
 
         JPanel buttons = new JPanel(new GridLayout(1, 4, 10, 0));
         
-        // Create and add home screen buttons
         appButtons.addHomeScreenButtons(buttons);
         add(buttons);
         
@@ -99,11 +91,9 @@ public class physicsAppGUI extends JFrame {
 
         JPanel calculatorButton = new JPanel(new GridLayout(1, 5, 10, 0));
         
-        // Add calculator buttons
         appCalculators.addCalculatorButtons(calculatorButton);
         add(calculatorButton);
 
-        // Add navigation button
         appButtons.addHomeButton();
         
         mainContentPanel.revalidate();
@@ -120,14 +110,12 @@ public class physicsAppGUI extends JFrame {
         add(titlePanel);
 
         JPanel selectionPanel = new JPanel(new FlowLayout());
-        
-        // Add table generator buttons
+    
         appTables.addTableGeneratorButtons(selectionPanel);
         add(selectionPanel);
 
-        // Add navigation button
         appButtons.addHomeButton();
-        
+    
         mainContentPanel.revalidate();
         mainContentPanel.repaint();
     }
@@ -148,18 +136,15 @@ public class physicsAppGUI extends JFrame {
 
         JPanel selectionPanel = new JPanel(new FlowLayout());
         
-        // Add practice problem buttons
         appProblems.addPracticeProblemButtons(selectionPanel);
         add(selectionPanel);
 
-        // Add navigation button
         appButtons.addHomeButton();
         
         mainContentPanel.revalidate();
         mainContentPanel.repaint();
     }
     
-    // Method for showing calculator screens
     public void showCalculator(String calculatorType) {
         mainContentPanel.removeAll();
         mainContentPanel.setLayout(new GridLayout(5, 1));
@@ -170,7 +155,6 @@ public class physicsAppGUI extends JFrame {
         mainContentPanel.repaint();
     }
     
-    // Method for showing table generator screens
     public void showTableGenerator(String tableType) {
         mainContentPanel.removeAll();
         mainContentPanel.setLayout(new GridLayout(5, 1));
@@ -181,7 +165,6 @@ public class physicsAppGUI extends JFrame {
         mainContentPanel.repaint();
     }
     
-    // Method for showing practice problem screens
     public void showPracticeProblem(String problemType) {
         mainContentPanel.removeAll();
         mainContentPanel.setLayout(new GridLayout(5, 1));

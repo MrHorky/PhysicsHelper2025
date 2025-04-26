@@ -39,12 +39,8 @@ public class physicsAppTables {
     
     public void displayTableGenerator(String tableType) {
         switch (tableType) {
-            case "regular":
-                displayRegularTableGenerator();
-                break;
-            case "projectileMotion":
-                displayProjectileMotionTableGenerator();
-                break;
+            case "regular" -> displayRegularTableGenerator();
+            case "projectileMotion" -> displayProjectileMotionTableGenerator();
         }
     }
     
@@ -112,7 +108,8 @@ public class physicsAppTables {
                     catch (IOException ex) {
                         result.setText("Error writing to file: " + ex.getMessage());
                     }
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }
@@ -189,7 +186,8 @@ public class physicsAppTables {
                     catch (IOException ex) {
                         result.setText("Error writing to file: " + ex.getMessage());
                     }
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }

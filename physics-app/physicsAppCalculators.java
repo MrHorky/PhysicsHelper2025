@@ -64,21 +64,11 @@ public class physicsAppCalculators {
     
     public void displayCalculator(String calculatorType) {
         switch (calculatorType) {
-            case "position":
-                displayPositionCalculator();
-                break;
-            case "velocity":
-                displayVelocityCalculator();
-                break;
-            case "acceleration":
-                displayAccelerationCalculator();
-                break;
-            case "angularSpeed":
-                displayAngularSpeedCalculator();
-                break;
-            case "angleOfMovement":
-                displayAngleOfMovementCalculator();
-                break;
+            case "position" -> displayPositionCalculator();
+            case "velocity" -> displayVelocityCalculator();
+            case "acceleration" -> displayAccelerationCalculator();
+            case "angularSpeed" -> displayAngularSpeedCalculator();
+            case "angleOfMovement" -> displayAngleOfMovementCalculator();
         }
     }
     
@@ -129,7 +119,8 @@ public class physicsAppCalculators {
                     double currPos = (initPos) + (initVelo * time) + ((1.0 / 2.0) * acc * Math.pow(time, 2));
 
                     result.setText("The current position is: " + String.format("%.2f", currPos));
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }
@@ -183,7 +174,8 @@ public class physicsAppCalculators {
                     double currentVelocity = (finalPos - initPos) / (finalTime - initTime);
 
                     result.setText("The current velocity is: " + String.format("%.2f", currentVelocity));
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }
@@ -237,7 +229,8 @@ public class physicsAppCalculators {
                     double acceleration = (finalVelo - initVelo) / (finalTime - initTime);
 
                     result.setText("The acceleration is: " + String.format("%.2f", acceleration));
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }
@@ -286,7 +279,8 @@ public class physicsAppCalculators {
                     double angularSpeed = initVelo + (acceleration * time);
 
                     result.setText("The angular speed is: " + String.format("%.2f", angularSpeed));
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }
@@ -340,7 +334,8 @@ public class physicsAppCalculators {
                     double angleOfMovement = initPos + (initVelo * time) + ((0.5) * acceleration * Math.pow(time, 2));
 
                     result.setText("The angle of movement is: " + String.format("%.2f", angleOfMovement));
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter valid numbers for all fields");
                 }
             }

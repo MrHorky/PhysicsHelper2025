@@ -48,15 +48,9 @@ public class physicsAppProblems {
     
     public void displayPracticeProblem(String problemType) {
         switch (problemType) {
-            case "position":
-                displayPositionProblem();
-                break;
-            case "velocity":
-                displayVelocityProblem();
-                break;
-            case "acceleration":
-                displayAccelerationProblem();
-                break;
+            case "position" -> displayPositionProblem();
+            case "velocity" -> displayVelocityProblem();
+            case "acceleration" -> displayAccelerationProblem();
         }
     }
     
@@ -133,7 +127,8 @@ public class physicsAppProblems {
                     else {
                         result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s", correctAnswer, formula));
                     }
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter a valid number");
                 }
             }
@@ -194,7 +189,8 @@ public class physicsAppProblems {
                     else {
                         result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s", correctAnswer, formula));
                     }
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter a valid number");
                 }
             }
@@ -255,7 +251,8 @@ public class physicsAppProblems {
                     else {
                         result.setText(String.format("Incorrect! Correct answer: %.2f. Use formula: %s", correctAnswer, formula));
                     }
-                } catch (NumberFormatException ex) {
+                } 
+                catch (NumberFormatException ex) {
                     result.setText("Please enter a valid number");
                 }
             }
